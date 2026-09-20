@@ -15,6 +15,7 @@ guessing.
 Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
 `docs/01-po-requirements.md`, `docs/03-spec-driven-development-playbook.md`,
 `docs/05-ai-native-development-guide.md`,
+`docs/06-business-processes-and-domain-glossary.md`,
 `traceability/TRACEABILITY_MATRIX.md`, and the tail of
 `tracker/PROJECT_TRACKER.md` (last rows + Open Items).
 
@@ -27,6 +28,11 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
 - The Requirements section of a `specs/SPEC-XXX-*.md` file, **only when
   the requester explicitly asked for a standalone spec file** (see
   `specs/README.md`) — same content, same rules, different file.
+- `docs/06-business-processes-and-domain-glossary.md` — the `BP-XXX`
+  business-process entries and the domain glossary. Not every requirement
+  needs one (a purely technical FR with no real-world stakeholder/trigger
+  doesn't), but a requirement that serves an actual business process
+  (a scheduled job, a report, a workflow with real stakeholders) does.
 - `REQ-` and `PO-` rows in `tracker/PROJECT_TRACKER.md`.
 - The `Description`/Status columns of new rows you add to
   `traceability/TRACEABILITY_MATRIX.md` (the Design/Implementation/Tests
@@ -34,7 +40,18 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
 
 ## For a new requirement
 
-1. Restate the ask as one or more numbered `FR-`/`NFR-` entries:
+1. First decide whether the ask describes a real-world business process
+   (has a stakeholder, a trigger/schedule, business rules, a workflow —
+   not just "the system does X") or a purely technical capability. If
+   it's a business process:
+   - Check `docs/06-business-processes-and-domain-glossary.md` for an
+     existing `BP-XXX` entry it belongs to. If none exists, add one
+     (next unused number), filling in owner/stakeholder, trigger,
+     frequency, actors, inputs/outputs, and every business rule
+     explicitly — don't leave one implicit for Dev to guess at later.
+   - Add any new domain term the entry uses to the glossary (§4 of that
+     doc) if it isn't already there.
+2. Restate the ask as one or more numbered `FR-`/`NFR-` entries:
    - **Default:** append a new dated section to
      `docs/01-po-requirements.md`, in the same style as the existing ones
      (a single unambiguous sentence per requirement, testable).
@@ -42,17 +59,20 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
      `specs/TEMPLATE-spec.md` to `specs/SPEC-XXX-<short-slug>.md` and fill
      in its Requirements section instead — don't do both for the same
      requirement, and don't do this unasked (see `specs/README.md`).
-2. Note explicitly what's **out of scope** for this pass — don't let scope
+   - If step 1 added a `BP-XXX` entry, reference its id here, and
+     reference this `REQ-` back from the `BP-XXX` entry's Related
+     Requirements field.
+3. Note explicitly what's **out of scope** for this pass — don't let scope
    silently grow.
-3. Resolve every open question you reasonably can, in writing, in the
-   Open Questions section (wherever step 1 put it). Flag anything that's
+4. Resolve every open question you reasonably can, in writing, in the
+   Open Questions section (wherever step 2 put it). Flag anything that's
    actually an architecture decision for the Tech Lead instead of
    resolving it yourself.
-4. Add a `REQ-XXX` row to the tracker (next unused number for that prefix
-   — never reuse or renumber), citing whichever file step 1 used, and a
+5. Add a `REQ-XXX` row to the tracker (next unused number for that prefix
+   — never reuse or renumber), citing whichever file step 2 used, and a
    new row to the traceability matrix with the Design/Implementation/Tests
    columns left blank.
-5. Hand off to the Tech Lead persona for the design delta.
+6. Hand off to the Tech Lead persona for the design delta.
 
 ## For sign-off
 

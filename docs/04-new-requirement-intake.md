@@ -41,6 +41,20 @@ See `specs/README.md` for what that changes (only where the
 requirement/design text lives) and what it doesn't (the tracker, the
 matrix, and the persona discipline are identical either way).
 
+## If the requirement is a real-world business process
+
+Some requirements are purely technical ("expose an endpoint that does
+X"). Others exist to serve an actual business process — a scheduled job,
+a report, a workflow with a real stakeholder and business rules. If
+yours is the second kind, say so, and it gets a
+`docs/06-business-processes-and-domain-glossary.md` entry (`BP-XXX`) as
+well as the usual `REQ-XXX` — that's where the stakeholder, the trigger/
+schedule, the business rules, and any domain terminology live, cross-
+referenced from the requirement rather than folded into the FR text where
+it'd be lost the moment someone reads FR-1 in isolation. See that file's
+§1-2 for the template and `BP-001` for a worked (currently
+not-implemented) example.
+
 ## What happens automatically, in order
 
 1. **Context load.** The session reads `AGENTS.md` (via `CLAUDE.md`'s
@@ -48,13 +62,15 @@ matrix, and the persona discipline are identical either way).
    which points at (and requires reading, in order)
    `docs/00-roles-and-responsibilities.md`, `docs/01-po-requirements.md`,
    `docs/02-techlead-design.md`, `docs/05-ai-native-development-guide.md`,
-   this file, `traceability/TRACEABILITY_MATRIX.md`, and
+   `docs/06-business-processes-and-domain-glossary.md`, this file,
+   `traceability/TRACEABILITY_MATRIX.md`, and
    `tracker/PROJECT_TRACKER.md`. Nothing about your one-line ask needs to
    restate any of that.
 2. **Product Owner pass** (`@agent-product-owner` in Claude Code, or just
    "acting as Product Owner" on another agent, or the command's first
-   phase): drafts a `REQ-XXX` row and a PRD delta, resolves any open
-   question it can, flags any it can't.
+   phase): if it's a business process, adds/updates a `BP-XXX` entry;
+   drafts a `REQ-XXX` row and a PRD delta, resolves any open question it
+   can, flags any it can't.
 3. **Tech Lead pass**: drafts a `DES-XXX` row and a design delta — what's
    reused, what's new, any real decision named explicitly.
 4. **Developer pass**: implements it story by story, `DEV-XXX` rows, unit

@@ -45,13 +45,20 @@ this process on any new project. See
    commands, permission allowlists) this repo wires up. Skipping it is
    how a session ends up doing the process by rote without getting the
    efficiency it exists for.
-7. `traceability/TRACEABILITY_MATRIX.md` — per requirement, what design
+7. `docs/06-business-processes-and-domain-glossary.md` — the business
+   narrative a technical `FR-` doesn't carry: who asked for it, what
+   real-world event triggers it, what business rules govern it, what the
+   domain terms mean. Check this before drafting a requirement that
+   serves a real-world process (a scheduled job, a report, a workflow
+   with actual business stakeholders) — either it's already named here,
+   or a new `BP-` entry is owed alongside the new `REQ-`.
+8. `traceability/TRACEABILITY_MATRIX.md` — per requirement, what design
    section, what code, and what tests cover it right now.
-8. `tracker/PROJECT_TRACKER.md` — the actual history. Read end to end,
+9. `tracker/PROJECT_TRACKER.md` — the actual history. Read end to end,
    especially the last rows, "Open Items / Blockers", and the "Phase
    Overview" checklist.
 
-If asked to "continue the project" with no further detail, those eight
+If asked to "continue the project" with no further detail, those nine
 reads are the entire briefing needed — resume at whatever the tracker's
 last state says is next, in the appropriate persona, logging the same way
 every prior entry did. (Claude Code: `/resume-project` runs this for you.)

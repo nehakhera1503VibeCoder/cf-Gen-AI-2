@@ -50,6 +50,7 @@ curl -X POST http://localhost:8080/api/v1/cashflows/fixed-schedule \
 | `docs/03-spec-driven-development-playbook.md` | The process itself: IDs, resume protocol, propose-new-work protocol |
 | `docs/04-new-requirement-intake.md` | Exactly what to type for a new request |
 | `docs/05-ai-native-development-guide.md` | **Why this structure is token-efficient**, and how to use each native AI capability it wires up |
+| `docs/06-business-processes-and-domain-glossary.md` | The business narrative a technical `FR-` doesn't carry: stakeholders, triggers, business rules, domain terms — seeded with an example (`BP-001`, not yet implemented) |
 | `traceability/TRACEABILITY_MATRIX.md` | Per-requirement: what design, what code, what test covers it, right now |
 | `tracker/PROJECT_TRACKER.md` | The append-only history, with real command evidence |
 | `specs/README.md`, `specs/TEMPLATE-spec.md` | **Optional**: a standalone spec file per requirement, instead of appending to `docs/01`/`docs/02` — opt in per requirement, not a default |

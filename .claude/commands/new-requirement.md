@@ -15,6 +15,7 @@ read it yourself first.
 Before anything else, read in order: `CLAUDE.md`,
 `docs/00-roles-and-responsibilities.md`, `docs/01-po-requirements.md`,
 `docs/02-techlead-design.md`, `docs/05-ai-native-development-guide.md`,
+`docs/06-business-processes-and-domain-glossary.md`,
 `traceability/TRACEABILITY_MATRIX.md`, and the tail of
 `tracker/PROJECT_TRACKER.md` (last rows + Open Items) — so the next unused
 ID per prefix, the current architecture, and what's already built are all
@@ -25,13 +26,18 @@ matching subagent for each phase — `.claude/agents/product-owner.md`,
 `.claude/agents/tech-lead.md`, `.claude/agents/developer.md`,
 `.claude/agents/qa-tester.md` — rather than blending them):
 
-1. **Product Owner**: draft the `REQ-XXX` requirement delta in
+1. **Product Owner**: if the ask describes a real-world business process
+   (a stakeholder, a trigger/schedule, business rules — not just "the
+   system does X"), first add or update a `BP-XXX` entry in
+   `docs/06-business-processes-and-domain-glossary.md` (and any new
+   glossary term it needs). Then draft the `REQ-XXX` requirement delta in
    `docs/01-po-requirements.md` — **unless the ask above explicitly
    requested a standalone spec file**, in which case use
    `specs/SPEC-XXX-<short-slug>.md` (copied from `specs/TEMPLATE-spec.md`)
-   instead; see `specs/README.md`. Resolve what can be resolved, add the
-   tracker row and a blank-columns traceability matrix row, citing
-   whichever file was used.
+   instead; see `specs/README.md`. Cross-reference the `BP-XXX` id from
+   the requirement (and vice versa) if one was added. Resolve what can be
+   resolved, add the tracker row and a blank-columns traceability matrix
+   row, citing whichever file was used.
 2. **Tech Lead**: draft the `DES-XXX` design delta in the **same file**
    step 1 used — a new section in `docs/02-techlead-design.md`, or the
    Design section of the same `specs/SPEC-XXX-*.md` file — naming any real
