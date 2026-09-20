@@ -58,7 +58,7 @@ turns the tracker into narration instead of a check on the work.
 | `TEST-` | QA/Tester (test rounds) | `TEST-01` |
 | `TECHLEAD-` | Tech Lead (build/design reviews, after the initial design) | `TECHLEAD-01` |
 | `PO-` | Product Owner (sign-offs, after the initial draft) | `PO-01` |
-| `BP-` | Product Owner (business process entries, `docs/06-business-processes-and-domain-glossary.md`) | `BP-001` |
+| `BP-` | Product Owner (business process files, `business-processes/BP-<NNN>-*.md`, indexed in `docs/06-business-processes-and-domain-glossary.md`) | `BP-001` |
 
 Rules:
 - **Never reuse or renumber an ID.** The next one of a given prefix is
@@ -101,10 +101,11 @@ a two-sentence ask instead of a re-briefing. See
 1. A human states the *what* and *why*, briefly. That's the entire input.
 2. **Product Owner** subagent drafts a PRD delta: if the ask describes a
    real-world business process (a stakeholder, a trigger/schedule,
-   business rules — not just "the system does X"), a `BP-XXX` entry in
-   `docs/06-business-processes-and-domain-glossary.md` first, then a new
-   `REQ-XXX` tracker row, a new/amended section in
-   `docs/01-po-requirements.md` (cross-referencing the `BP-XXX` id if one
+   business rules — not just "the system does X"), first its own
+   `business-processes/BP-<NNN>-*.md` file (`business-processes/README.md`)
+   plus its index row in `docs/06-business-processes-and-domain-glossary.md`;
+   then a new `REQ-XXX` tracker row, a new/amended section in
+   `docs/01-po-requirements.md` (cross-referencing the `BP-` id if one
    was added), and a new `traceability/TRACEABILITY_MATRIX.md` row for it.
 3. **Tech Lead** subagent drafts the design delta: a `DES-XXX` row, a new
    section in `docs/02-techlead-design.md` naming what's reused vs. new

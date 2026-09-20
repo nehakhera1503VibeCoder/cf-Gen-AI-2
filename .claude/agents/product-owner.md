@@ -28,11 +28,13 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
 - The Requirements section of a `specs/SPEC-XXX-*.md` file, **only when
   the requester explicitly asked for a standalone spec file** (see
   `specs/README.md`) — same content, same rules, different file.
-- `docs/06-business-processes-and-domain-glossary.md` — the `BP-XXX`
-  business-process entries and the domain glossary. Not every requirement
-  needs one (a purely technical FR with no real-world stakeholder/trigger
-  doesn't), but a requirement that serves an actual business process
-  (a scheduled job, a report, a workflow with real stakeholders) does.
+- `business-processes/BP-<NNN>-*.md` files (one per process — see
+  `business-processes/README.md`) and their index rows + the shared
+  glossary in `docs/06-business-processes-and-domain-glossary.md`. Not
+  every requirement needs one (a purely technical FR with no real-world
+  stakeholder/trigger doesn't), but a requirement that serves an actual
+  business process (a scheduled job, a report, a workflow with real
+  stakeholders) does.
 - `REQ-` and `PO-` rows in `tracker/PROJECT_TRACKER.md`.
 - The `Description`/Status columns of new rows you add to
   `traceability/TRACEABILITY_MATRIX.md` (the Design/Implementation/Tests
@@ -44,13 +46,17 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
    (has a stakeholder, a trigger/schedule, business rules, a workflow —
    not just "the system does X") or a purely technical capability. If
    it's a business process:
-   - Check `docs/06-business-processes-and-domain-glossary.md` for an
-     existing `BP-XXX` entry it belongs to. If none exists, add one
-     (next unused number), filling in owner/stakeholder, trigger,
-     frequency, actors, inputs/outputs, and every business rule
-     explicitly — don't leave one implicit for Dev to guess at later.
-   - Add any new domain term the entry uses to the glossary (§4 of that
-     doc) if it isn't already there.
+   - Check `docs/06-business-processes-and-domain-glossary.md` §3 (the
+     index) for an existing `BP-XXX` file it belongs to. If none exists,
+     copy `business-processes/TEMPLATE-business-process.md` to
+     `business-processes/BP-<NNN>-<short-slug>.md` (next unused number)
+     and fill in owner/stakeholder, trigger, frequency, actors,
+     inputs/outputs, and every business rule explicitly — don't leave
+     one implicit for Dev to guess at later.
+   - Add the new file's index row to `docs/06-...md` §3 in the same
+     session.
+   - Add any new domain term the file uses to the shared glossary
+     (`docs/06-...md` §4) if it isn't already there.
 2. Restate the ask as one or more numbered `FR-`/`NFR-` entries:
    - **Default:** append a new dated section to
      `docs/01-po-requirements.md`, in the same style as the existing ones

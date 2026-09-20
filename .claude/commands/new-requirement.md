@@ -28,9 +28,12 @@ matching subagent for each phase — `.claude/agents/product-owner.md`,
 
 1. **Product Owner**: if the ask describes a real-world business process
    (a stakeholder, a trigger/schedule, business rules — not just "the
-   system does X"), first add or update a `BP-XXX` entry in
-   `docs/06-business-processes-and-domain-glossary.md` (and any new
-   glossary term it needs). Then draft the `REQ-XXX` requirement delta in
+   system does X"), first add or update its own file —
+   `business-processes/BP-<NNN>-<short-slug>.md` (from
+   `business-processes/TEMPLATE-business-process.md`; see
+   `business-processes/README.md`) — and its index row + any new
+   glossary term in `docs/06-business-processes-and-domain-glossary.md`.
+   Then draft the `REQ-XXX` requirement delta in
    `docs/01-po-requirements.md` — **unless the ask above explicitly
    requested a standalone spec file**, in which case use
    `specs/SPEC-XXX-<short-slug>.md` (copied from `specs/TEMPLATE-spec.md`)

@@ -45,13 +45,16 @@ this process on any new project. See
    commands, permission allowlists) this repo wires up. Skipping it is
    how a session ends up doing the process by rote without getting the
    efficiency it exists for.
-7. `docs/06-business-processes-and-domain-glossary.md` — the business
-   narrative a technical `FR-` doesn't carry: who asked for it, what
-   real-world event triggers it, what business rules govern it, what the
-   domain terms mean. Check this before drafting a requirement that
-   serves a real-world process (a scheduled job, a report, a workflow
-   with actual business stakeholders) — either it's already named here,
-   or a new `BP-` entry is owed alongside the new `REQ-`.
+7. `docs/06-business-processes-and-domain-glossary.md` — the index of
+   `business-processes/BP-*.md` files (one file per business process —
+   see `business-processes/README.md`) plus the shared domain glossary.
+   Each file carries the business narrative a technical `FR-` doesn't:
+   who asked for it, what real-world event triggers it, what business
+   rules govern it, what the domain terms mean. Check the index before
+   drafting a requirement that serves a real-world process (a scheduled
+   job, a report, a workflow with actual business stakeholders) — either
+   it's already named there, or a new `BP-` file is owed alongside the
+   new `REQ-`.
 8. `traceability/TRACEABILITY_MATRIX.md` — per requirement, what design
    section, what code, and what tests cover it right now.
 9. `tracker/PROJECT_TRACKER.md` — the actual history. Read end to end,
