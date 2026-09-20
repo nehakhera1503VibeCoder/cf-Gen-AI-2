@@ -7,8 +7,9 @@ files, and run shell commands.
 
 It is two things at once, and both are real:
 
-1. A **working, runnable Spring Boot skeleton** (`pom.xml`, a REST endpoint,
-   a passing test) you can build on immediately.
+1. A **working, runnable Spring Boot skeleton** (`pom.xml`, a real REST
+   endpoint that generates a fixed-rate loan cashflow schedule, 11 passing
+   tests) you can build on immediately.
 2. A **spec-driven, multi-persona delivery process** — Product Owner → Tech
    Lead → Developer → QA — encoded as files on disk, so a fresh AI session
    (or a different person, weeks later) never has to be re-briefed from
@@ -25,14 +26,17 @@ whole point of this template.
 
 ```bash
 mvn compile                  # verify it builds
-mvn test                     # run the test suite
-mvn spring-boot:run          # run it locally — GET /api/v1/info
+mvn test                     # run the test suite (11 tests)
+mvn spring-boot:run          # run it locally
 mvn clean package            # produce the runnable fat jar
 ```
 
 ```bash
-curl http://localhost:8080/api/v1/info
-# {"name":"ai-native-spring-starter","version":"0.1.0-SNAPSHOT","status":"UP"}
+curl -X POST http://localhost:8080/api/v1/cashflows/fixed-schedule \
+  -H 'Content-Type: application/json' \
+  -d '{"principal":1000,"annualInterestRate":0.12,"periodsPerYear":12,"numberOfPeriods":1}'
+# {"principal":1000,"annualInterestRate":0.12,"periodsPerYear":12,"numberOfPeriods":1,
+#  "periods":[{"periodNumber":1,"payment":1010.00,"interest":10.00,"principal":1000.00,"remainingBalance":0.00}]}
 ```
 
 ## What's in here
@@ -41,7 +45,7 @@ curl http://localhost:8080/api/v1/info
 |---|---|
 | `AGENTS.md` / `CLAUDE.md` / `.github/copilot-instructions.md` | Tool-neutral entry point + tool-specific pointers to it |
 | `docs/00-roles-and-responsibilities.md` | The four personas, what each owns |
-| `docs/01-po-requirements.md` | PRD template, seeded with one worked example (`REQ-001`) |
+| `docs/01-po-requirements.md` | PRD template, seeded with a worked example (`REQ-001`: fixed-rate cashflow generation) |
 | `docs/02-techlead-design.md` | Design doc template, seeded with the matching design (`DES-001`) |
 | `docs/03-spec-driven-development-playbook.md` | The process itself: IDs, resume protocol, propose-new-work protocol |
 | `docs/04-new-requirement-intake.md` | Exactly what to type for a new request |
@@ -51,7 +55,7 @@ curl http://localhost:8080/api/v1/info
 | `.claude/agents/*.md` | Claude Code subagents — one per persona, tool-restricted to match its role |
 | `.claude/commands/*.md` | `/new-requirement`, `/resume-project` — saved prompts for the two protocols above |
 | `.claude/settings.json` | A permission allowlist for the commands this process runs constantly, so approval prompts don't eat a turn every time |
-| `src/main/java/...` | The worked example: a minimal `GET /api/v1/info` endpoint |
+| `src/main/java/...` | The worked example: `POST /api/v1/cashflows/fixed-schedule`, a fixed-rate amortizing cashflow generator (`domain`/`service`/`api` layers) |
 
 ## Using this as a starting point for your own project
 

@@ -12,13 +12,15 @@ not a codebase-wide search.
 
 | Requirement | Description | Design | Implementation | Tests | Status |
 |---|---|---|---|---|---|
-| `FR-1` (REQ-001) | `GET /api/v1/info` returns name, version, status | `docs/02-techlead-design.md` §4 | `api/InfoController.java`, `api/dto/InfoResponseDto.java` (DEV-01) | `InfoControllerTest#info_returnsNameVersionAndUpStatus` (TEST-01) | Done |
-| `NFR-1` (REQ-001) | No external dependency; works with zero configuration | `docs/02-techlead-design.md` §3 | `api/InfoController.java` (reads only `application.yml` placeholders) (DEV-01) | `InfoControllerTest` (TEST-01) | Done |
+| `FR-1` (REQ-001) | Generate a fully-amortizing, level-payment cashflow schedule | `docs/02-techlead-design.md` §3, §4 (`POST /api/v1/cashflows/fixed-schedule`) | `domain/CashflowPeriod.java`, `domain/CashflowSchedule.java`, `service/CashflowScheduleGenerator.java`, `service/impl/CashflowScheduleGeneratorImpl.java` (DEV-01); `api/CashflowController.java`, `api/dto/**` (DEV-02) | `CashflowScheduleGeneratorImplTest#singlePeriod_computesInterestAndPrincipalExactly`, `#zeroRate_distributesPrincipalEvenlyAcrossPeriods`, `#multiPeriod_principalComponentsSumToOriginalPrincipalAndBalanceReachesZero` (DEV-01); `CashflowApiIntegrationTest#fixedSchedule_singlePeriod_returnsIndependentlyHandComputedInterestAndPrincipal`, `#fixedSchedule_multiPeriod_principalComponentsSumToRequestedPrincipal` (TEST-01) | Done |
+| `FR-2` (REQ-001) | Reject invalid input (non-positive principal, negative rate, missing/non-positive periods) with 400 | `docs/02-techlead-design.md` §4 | `service/impl/CashflowScheduleGeneratorImpl.java` (validation), `api/ApiExceptionHandler.java` (DEV-01, DEV-02) | `CashflowScheduleGeneratorImplTest#rejectsNonPositivePrincipal`, `#rejectsNegativeRate`, `#rejectsNonPositivePeriods`, `#rejectsMissingPeriodsPerYear` (DEV-01); `CashflowApiIntegrationTest#fixedSchedule_nonPositivePrincipal_returns400`, `#fixedSchedule_missingPeriodsPerYear_returns400` (TEST-01) | Done |
+| `NFR-1` (REQ-001) | No external dependency; works with zero configuration | `docs/02-techlead-design.md` §3 | `service/impl/CashflowScheduleGeneratorImpl.java` (pure computation, no I/O) (DEV-01) | Implicitly exercised by every test above (no test fixture requires external state) | Done |
+| `NFR-2` (REQ-001) | Deterministic HALF_UP rounding; last period corrects drift so principal sums exactly and balance reaches 0.00 | `docs/02-techlead-design.md` §3 | `service/impl/CashflowScheduleGeneratorImpl.java` (last-period balance correction) (DEV-01) | `CashflowScheduleGeneratorImplTest#multiPeriod_principalComponentsSumToOriginalPrincipalAndBalanceReachesZero` (DEV-01); `CashflowApiIntegrationTest#fixedSchedule_multiPeriod_principalComponentsSumToRequestedPrincipal` (TEST-01) | Done |
 
 ## Coverage summary (as of `TEST-01` / `PO-01`)
 
-- 1/1 functional requirement: unit-tested.
-- 1/1 non-functional requirement: satisfied and verified.
+- 2/2 functional requirements: unit-tested and full-stack-tested.
+- 2/2 non-functional requirements: satisfied and verified.
 - 0 requirements with a design or test gap.
 
 Add a new row here in the same unit of work that adds the `REQ-` tracker

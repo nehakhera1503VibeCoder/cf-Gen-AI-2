@@ -9,7 +9,8 @@ instructions and plain files any agent can read with normal file tools.
 ## What this project is
 
 An **AI-native Spring Boot starter**: a small, real Spring Boot service
-(currently one worked example endpoint) that exists to demonstrate — and
+(currently one worked example: fixed-rate cashflow generation) that exists
+to demonstrate — and
 give you a ready-to-clone copy of — a **spec-driven, multi-persona
 (Product Owner / Tech Lead / Developer / QA), token-efficient delivery
 process** for building Java Spring services with an AI coding agent. Both
@@ -103,7 +104,7 @@ not a different process, just a saved prompt.)
 ```bash
 mvn compile                  # verify it builds
 mvn test                     # run the test suite
-mvn spring-boot:run          # run it locally — GET /api/v1/info
+mvn spring-boot:run          # run it locally — POST /api/v1/cashflows/fixed-schedule
 mvn clean package            # produce the runnable fat jar
 java -jar target/ai-native-spring-starter-0.1.0-SNAPSHOT.jar   # run the packaged jar standalone
 ```
