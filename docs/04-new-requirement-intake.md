@@ -25,6 +25,22 @@ explain: what this project does, how the layers are structured, what the
 persona roles are, or what tracker ID comes next. All of that is already on
 disk and gets read before any work starts.
 
+## Optional: as a standalone spec file instead
+
+By default the requirement/design text is appended to
+`docs/01-po-requirements.md`/`docs/02-techlead-design.md`, same as every
+requirement before it. If you'd rather this one get its own file — it's
+large, or you want it as its own reviewable artifact — say so in the same
+prompt:
+
+```
+/new-requirement Add a floating-rate cashflow schedule endpoint, rate supplied per-period. Write it as its own spec file, not a docs/01/02 delta.
+```
+
+See `specs/README.md` for what that changes (only where the
+requirement/design text lives) and what it doesn't (the tracker, the
+matrix, and the persona discipline are identical either way).
+
 ## What happens automatically, in order
 
 1. **Context load.** The session reads `AGENTS.md` (via `CLAUDE.md`'s

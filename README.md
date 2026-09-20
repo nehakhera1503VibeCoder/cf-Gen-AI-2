@@ -52,6 +52,7 @@ curl -X POST http://localhost:8080/api/v1/cashflows/fixed-schedule \
 | `docs/05-ai-native-development-guide.md` | **Why this structure is token-efficient**, and how to use each native AI capability it wires up |
 | `traceability/TRACEABILITY_MATRIX.md` | Per-requirement: what design, what code, what test covers it, right now |
 | `tracker/PROJECT_TRACKER.md` | The append-only history, with real command evidence |
+| `specs/README.md`, `specs/TEMPLATE-spec.md` | **Optional**: a standalone spec file per requirement, instead of appending to `docs/01`/`docs/02` — opt in per requirement, not a default |
 | `.claude/agents/*.md` | Claude Code subagents — one per persona, tool-restricted to match its role |
 | `.claude/commands/*.md` | `/new-requirement`, `/resume-project` — saved prompts for the two protocols above |
 | `.claude/settings.json` | A permission allowlist for the commands this process runs constantly, so approval prompts don't eat a turn every time |
@@ -77,3 +78,7 @@ curl -X POST http://localhost:8080/api/v1/cashflows/fixed-schedule \
 On any agent other than Claude Code, just say the same thing in plain
 language — `AGENTS.md` tells any session to run the same protocol either
 way. See `docs/04-new-requirement-intake.md`.
+
+By default the requirement/design text goes into `docs/01`/`docs/02`, same
+as `REQ-001`. If you'd rather this one get its own file, say so in the
+same prompt — see `specs/README.md`.

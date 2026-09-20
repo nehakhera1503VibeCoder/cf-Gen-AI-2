@@ -26,12 +26,17 @@ matching subagent for each phase — `.claude/agents/product-owner.md`,
 `.claude/agents/qa-tester.md` — rather than blending them):
 
 1. **Product Owner**: draft the `REQ-XXX` requirement delta in
-   `docs/01-po-requirements.md`, resolve what can be resolved, add the
-   tracker row and a blank-columns traceability matrix row.
-2. **Tech Lead**: draft the `DES-XXX` design delta in
-   `docs/02-techlead-design.md`, naming any real design decision
-   explicitly, break it into Dev stories, add the tracker row, fill in the
-   matrix row's Design column.
+   `docs/01-po-requirements.md` — **unless the ask above explicitly
+   requested a standalone spec file**, in which case use
+   `specs/SPEC-XXX-<short-slug>.md` (copied from `specs/TEMPLATE-spec.md`)
+   instead; see `specs/README.md`. Resolve what can be resolved, add the
+   tracker row and a blank-columns traceability matrix row, citing
+   whichever file was used.
+2. **Tech Lead**: draft the `DES-XXX` design delta in the **same file**
+   step 1 used — a new section in `docs/02-techlead-design.md`, or the
+   Design section of the same `specs/SPEC-XXX-*.md` file — naming any real
+   design decision explicitly, break it into Dev stories, add the tracker
+   row, fill in the matrix row's Design column.
 3. **Developer**: implement each story with unit tests, one `DEV-XXX`
    tracker row per story, actually running `mvn compile`/`mvn test` and
    recording the real output. Fill in the matrix row's Implementation

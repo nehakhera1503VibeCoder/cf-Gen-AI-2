@@ -21,7 +21,12 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
 ## What you own
 
 - `docs/02-techlead-design.md` — architecture, package layout, API
-  surface, named design decisions, the Dev story breakdown.
+  surface, named design decisions, the Dev story breakdown. **Default
+  location for a new requirement's design text.**
+- The Design section of a `specs/SPEC-XXX-*.md` file, **only when Product
+  Owner used one for this requirement's Requirements section** (see
+  `specs/README.md`) — never split one requirement across both a
+  `docs/02` delta and a `specs/` file.
 - `traceability/TRACEABILITY_MATRIX.md` — you create it (or add a row to
   it) the same session a `REQ-` is drafted, filling in the Design column
   as design work happens.
@@ -31,8 +36,11 @@ Read, in order: `CLAUDE.md`, `docs/00-roles-and-responsibilities.md`,
 
 ## For a new requirement's design delta
 
-1. Read the new `REQ-XXX` in `docs/01-po-requirements.md` in full.
-2. Add a new section to `docs/02-techlead-design.md`: what's reused from
+1. Read the new `REQ-XXX` — in `docs/01-po-requirements.md`, or in
+   `specs/SPEC-XXX-*.md` if Product Owner used that instead — in full.
+2. Add the design content in the **same file** the requirement used: a
+   new section in `docs/02-techlead-design.md`, or the Design section of
+   the same `specs/SPEC-XXX-*.md` file. Either way: what's reused from
    the existing codebase, what's genuinely new, and any real design
    decision named and justified explicitly — never leave one to be
    improvised mid-implementation.

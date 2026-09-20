@@ -114,6 +114,19 @@ a two-sentence ask instead of a re-briefing. See
 6. **Product Owner** signs off (`PO-XXX` row) against the PRD's own
    acceptance criteria.
 
+**Optional variant — a standalone spec file.** Steps 2-3 above default to
+appending delta sections to `docs/01-po-requirements.md` and
+`docs/02-techlead-design.md`. If the requirement is large, or you want it
+as its own reviewable artifact instead of a section buried in a growing
+PRD, you can ask for it to be written as a single standalone file instead:
+`specs/SPEC-XXX-<short-slug>.md`, copied from `specs/TEMPLATE-spec.md`.
+This has to be asked for explicitly — it's not the default, and it's not
+retroactive (an existing requirement already in `docs/01`/`docs/02` stays
+there). See `specs/README.md` for exactly what changes and what doesn't:
+the persona ownership, the tracker rows, and the matrix all work
+identically either way — only where the requirement/design text itself
+lives changes.
+
 For a well-understood, small change it's reasonable for one session to
 move through all four persona hats in sequence rather than pausing for
 approval at each gate — but every artifact still gets written in that
