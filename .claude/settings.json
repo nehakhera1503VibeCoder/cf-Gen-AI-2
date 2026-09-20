@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn compile)",
+      "Bash(mvn compile:*)",
+      "Bash(mvn test)",
+      "Bash(mvn test:*)",
+      "Bash(mvn clean package)",
+      "Bash(mvn -q compile)",
+      "Bash(mvn -q test)",
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}
