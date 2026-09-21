@@ -59,17 +59,44 @@ curl -X POST http://localhost:8080/api/v1/cashflows/fixed-schedule \
 | `.claude/commands/*.md` | `/new-requirement`, `/resume-project` — saved prompts for the two protocols above |
 | `.claude/settings.json` | A permission allowlist for the commands this process runs constantly, so approval prompts don't eat a turn every time |
 | `src/main/java/...` | The worked example: `POST /api/v1/cashflows/fixed-schedule`, a fixed-rate amortizing cashflow generator (`domain`/`service`/`api` layers) |
+| `scripts/scaffold-project.sh` | Generates a **blank** instance of this whole structure under any new folder — see below |
 
-## Using this as a starting point for your own project
+## Starting a brand-new project from this template
 
-1. Read `docs/05-ai-native-development-guide.md` §6 — it walks through
-   exactly what to replace (the worked example in `docs/01`/`docs/02`,
-   the tracker, the matrix) and what to keep as-is (the process files, the
-   subagents, the commands).
-2. Rename the Maven coordinates in `pom.xml` and the base package
-   (`com.example.starter`).
-3. Once your first real requirement is drafted, everything else in this
-   README still applies unchanged.
+**Recommended: run the generator.** It writes a fresh, blank copy of every
+file above (no cashflow worked example — an empty `docs/01`/`docs/02`, an
+empty tracker and matrix) into any target directory, with the Maven
+coordinates, base package, and Application class name all parameterized
+and substituted for you. By default it also runs `mvn compile`/`mvn test`
+against the result, so "scaffolded" means "verified to build," not just
+"files were written."
+
+```bash
+./scripts/scaffold-project.sh <target-directory> [artifact-id] [group-id]
+
+# e.g.
+./scripts/scaffold-project.sh ../claims-processing-service claims-processing-service com.acme
+```
+
+- `artifact-id` defaults to the target directory's own name; `group-id`
+  defaults to `com.example`.
+- Refuses to write into an existing, non-empty directory unless you pass
+  `--force`.
+- Pass `--skip-build` to skip the `mvn compile`/`mvn test` verification
+  pass (useful if Maven isn't on `PATH` in that environment).
+- Run it with `-h` for the full usage note.
+
+Once it's done: `cd` into the target directory, read `AGENTS.md`, and draft
+your first requirement via `/new-requirement <what's needed, and why>` (or
+the same sentence in plain language on any other agent) — there's no
+worked example to replace, the scaffold starts at Phase 0.
+
+**Manual alternative:** copy this repo directly and follow
+`docs/05-ai-native-development-guide.md` §6, which walks through exactly
+what to replace (the cashflow worked example in `docs/01`/`docs/02`, the
+tracker, the matrix) versus what to keep as-is (the process files, the
+subagents, the commands) — useful if you specifically want to start from
+the worked example rather than a blank scaffold.
 
 ## Adding new work
 
